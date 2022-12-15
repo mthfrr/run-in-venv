@@ -5,10 +5,10 @@ import marshal
 
 stages = [
         #(lambda x: f"exec(__import__('marshal').loads({x}))", lambda x: marshal.dumps(compile(x, "", "exec", optimize=2))),
-        (lambda x: f"eval({x})", lambda x: x),
-        (lambda x: f"__import__('zlib').decompress({x})", lambda x: zlib.compress(x.encode('ascii'), 9)),
-        (lambda x: f"__import__('base64').a85decode({x})",lambda x: base64.a85encode(x.encode('ascii'))),
-        (lambda x: f"eval({x})", lambda x: x),
+        (lambda x: f"exec({x})", lambda x: x),
+        (lambda x: f"__import__('zlib').decompress({x})", lambda x: zlib.compress(x.encode('ascii')), 9, 2),
+        #(lambda x: f"__import__('base64').a85decode({x})",lambda x: base64.a85encode(x.encode('ascii'))),
+        #(lambda x: f"eval({x})", lambda x: x),
         ]
 
 
