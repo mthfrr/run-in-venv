@@ -36,5 +36,5 @@ code = f"I=__import__;exec(I('zlib').decompress(I('base64').a85decode({code})))"
 
 print(f"after: {len(code)}")
 exec(code)
-with open("minified", "w") as f:
+with open("minified.py", "w") as f:
     f.write(code)
