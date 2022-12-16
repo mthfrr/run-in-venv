@@ -11,7 +11,7 @@ I hate to have to remember to enter a venv before running a script.
 At the beginning of your main python file **AND ONLY THERE**, import `runfromvenv.py`
 
 ```py
-import run-from-venv
+import runfromvenv
 
 import other-stuff
 
@@ -25,7 +25,7 @@ of `minified`
 
 ```py
 # paste here
-exec(__import__...
+_i=__import__;exec(_i('zlib').decompress(_i('base64').a85decode(XXXX)))
 
 import other-stuff
 
