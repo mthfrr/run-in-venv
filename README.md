@@ -6,10 +6,11 @@ I hate to have to remember to enter a venv before running a script.
 
 ## Features
 
-- [x] Create a new venv if it doesn't exist
+When run in `myscript.py`
+
+- [x] Create a new venv `.myscript.venv` if it doesn't exist
 - [x] Enter the venv on start
-- [x] Install dependencies on creation if `requirements.txt` is in the same
-  directory as the script
+- [x] Pip install -r `myscript.req` on creation if `myscript.req` exists
 
 ## Usage
 
@@ -31,7 +32,7 @@ At the beginning of your main python file **AND ONLY THERE**, paste the content
 of `minified.py`
 
 ```py
-I=__import__;exec(I('zlib').decompress(I('base64').a85decode(b'GhP#Q9lK#F&3[4H7ET3.Q15AUPs_3l;b@YV$UTs^\'6\'GZ=kfWLM#Y24Zs9\\XcSKLrN4hoX;%8UY!paqi"er"d)])ea^2WsZ\\Z0M!\\Vm8C?Fan`NR9ai)t8_!7TY_\\U64j`rNA%+b7=E.(Of>\\Q5\'Vn`]pl26^7.o[.rRW>Zm]]cU*m;Z[N0E1qac<FB:Q^GfBU/K_V+^Or%<^ePUr81_u/E<ELX?0?P+FL%-`_Oe#*mOJUc!QA$)W#(&g/aW$d*1/(S,i^HYuVKBcE+q3=<6krS$?.:m06P^2UY_IQ]Gn0QmpHq!;6iO4C3V*VP[\\cJ_k$DlFiLjpnAF.#*%>s)QFn/@<-TceJHqNRL9#oe!4:l@N$u.`rQu09]dUb=?I6]pUPITi4k4eX/fM2)6hOQgEdogo0+jK8gaJ-!N#62-S@"l"p_He1(D:WgFA:=*QrQYX&q,M)AD\'BK=KmpdR:.?9:pl^7uf/?CidK53m1L^ZLq]l8ki=2qXI`D:9b@Oi)h3^RElH9%NE1R.1Rr6lMr<"s:\\ao')))
+I=__import__;exec(I('zlib').decompress(I('base64').a85decode(b'GhP$<9lo;J%#3*o?]fB6h%?5AViq3Z^\'^^$ZFqqc`WQOZ%C+N.BQk<mqo[T4nOTs]pT`fBN*:\'I)/"\'E>>HZp-YlsXcDj\'\\s6Du&hPqbFdO,Flc-A@K..<r26:tlcM=JI*E(mtrSW["=A&]b[[B&C\\7:uqANNT&,K:VZ"(8$-NR"f7QX#BMUhGu\\9Y?#ghPIW+bRWbRqe-GZCMR/<9)]<7KXMuaPe6+f8p1tn"OMqIbS;YghTIBD!ATkBM)k,qe0[K!LPA.I96Va5Y\'q:l42a=c^OS.6?b)Wto>t#`(LD*r?[0]DtbQ^2sDs3@%ZggDq(Blud-oQTO*KE,i2I!d_EAGF,"/%_];bfeQM3A[:]ErU[WOD3X%c]]1K*`J?DV>ndh8aCLqEA2eJ+_t"E:H]P!K>L5F.$=_97JbS?9;6fnA^3&=[K^;R?RG*GJn[ic[Y4]2WqC&,;&>VT9::mEQL7-LG@NM2YQ(i?;YqOl;_M60W+CTkiYgBMK6KX7q%Ec0;:G+iZg*e<O\'dSB_U#BiD0asU2\\H0I*;Njr+3S%')))
 
 import other_stuff
 
