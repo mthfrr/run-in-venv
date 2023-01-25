@@ -1,10 +1,12 @@
 #!/usr/bin/env python3.9
-deps = ("python-minifier==2.7.0",)
+deps = ("python-minifier==2.7.0", "cowsay==5.0")
+# deps = ("python-minifier==2.7.0",)
 import runfromvenv
 
 import python_minifier
 import base64
 import zlib
+import textwrap
 
 
 def minify_all(x):
@@ -28,10 +30,14 @@ with open(f"runfromvenv.py", "rb") as f:
     print(f"init: {len(code)}")
     mini = minify_all(code)
     print(f"mini: {len(f'exec({repr(mini)})')}")
-    # print(mini)
+    print(textwrap.indent(mini, "  "))
 
-code = mini.replace("\n", "\v")
-code = f'exec("""{code}""".replace("\\v","\\n"))'
+SUBST_CHAR = "~"
+assert not (SUBST_CHAR.encode("ascii") in code)
+code = mini.replace("\n", SUBST_CHAR)
+code = f'exec("""{code}""".replace("{SUBST_CHAR}","\\n"))'
+print(code)
+
 # code = zlib.compress(code, 9)
 # code = f"__import__('zlib').decompress({code})".encode("ascii")
 # code = f"exec(bytes.fromhex('{code.hex()}'))"

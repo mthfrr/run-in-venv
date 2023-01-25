@@ -1,4 +1,5 @@
-import venv, sys, inspect, subprocess
+import venv, sys, inspect
+from subprocess import check_call, getoutput
 from os.path import realpath, dirname, join, basename, isdir, splitext
 from os import environ, execvp
 
@@ -25,6 +26,12 @@ if e != realpath(join(venv_bin_dir, basename(e))):
     )
     execvp(project_main_file, sys.argv)
 
-if "P" in environ:
-    for args in (("--upgrade", "pip", "setuptools", "wheel"), frame.f_locals["deps"]):
-        subprocess.check_call([e, "-m", "pip", "install", *args])
+deps = frame.f_locals["deps"]
+[
+    check_call(["pip", "install", *args])
+    for args in (("--upgrade", "pip", "setuptools", "wheel"), deps)
+    if "P" in environ
+]
+
+installed_pkg = getoutput("pip freeze").split()
+[getoutput("pip install " + dep) for dep in deps if dep not in installed_pkg]
