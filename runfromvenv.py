@@ -1,10 +1,9 @@
 import venv, sys, inspect, subprocess
-from os.path import realpath, dirname, join, basename, isdir, isfile, splitext
+from os.path import realpath, dirname, join, basename, isdir, splitext
 from os import environ, execvp
 
-project_main_file = realpath(
-    next(reversed(inspect.stack())).frame.f_globals["__file__"]
-)
+frame = next(reversed(inspect.stack())).frame
+project_main_file = realpath(frame.f_globals["__file__"])
 project_dir = dirname(project_main_file)
 project_name = splitext(basename(project_main_file))[0]
 venv_dir = join(project_dir, f".{project_name}.venv")
@@ -26,7 +25,6 @@ if e != realpath(join(venv_bin_dir, basename(e))):
     )
     execvp(project_main_file, sys.argv)
 
-requirements = join(project_dir, f"{project_name}.req")
-if isfile(requirements) and "P" in environ:
-    for args in (("--upgrade", "pip", "setuptools", "wheel"), ("-r", requirements)):
+if "P" in environ:
+    for args in (("--upgrade", "pip", "setuptools", "wheel"), frame.f_locals["deps"]):
         subprocess.check_call([e, "-m", "pip", "install", *args])

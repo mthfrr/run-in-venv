@@ -1,4 +1,5 @@
 #!/usr/bin/env python3.9
+deps = ("python-minifier==2.7.0",)
 import runfromvenv
 
 import python_minifier
@@ -29,10 +30,11 @@ with open(f"runfromvenv.py", "rb") as f:
     print(f"mini: {len(f'exec({repr(mini)})')}")
     # print(mini)
 
-code = mini.encode("ascii")
-code = zlib.compress(code, 9)
-code = base64.a85encode(code, foldspaces=True)
-code = f"I=__import__;exec(I('zlib').decompress(I('base64').a85decode({code})))"
+code = mini.replace("\n", "\v")
+code = f'exec("""{code}""".replace("\\v","\\n"))'
+# code = zlib.compress(code, 9)
+# code = f"__import__('zlib').decompress({code})".encode("ascii")
+# code = f"exec(bytes.fromhex('{code.hex()}'))"
 
 print(f"after: {len(code)}")
 exec(code)
