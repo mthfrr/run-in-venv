@@ -7,7 +7,7 @@ frame = next(reversed(inspect.stack())).frame
 project_main_file = realpath(frame.f_globals["__file__"])
 project_dir = dirname(project_main_file)
 project_name = splitext(basename(project_main_file))[0]
-venv_dir = join(project_dir, f".{project_name}.venv")
+venv_dir = join(project_dir, "." + project_name + ".venv")
 
 if not isdir(venv_dir):
     environ["P"] = "PATH"  # random value but reusing already aliased value
@@ -21,7 +21,7 @@ if e != realpath(join(venv_bin_dir, basename(e))):
     environ.update(
         {
             "VIRTUAL_ENV": venv_dir,
-            "PATH": f"{venv_bin_dir}:{environ['PATH']}",
+            "PATH": venv_bin_dir + ":" + environ["PATH"],
         }
     )
     execvp(project_main_file, sys.argv)

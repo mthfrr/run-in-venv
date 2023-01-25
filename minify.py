@@ -32,10 +32,10 @@ with open(f"runfromvenv.py", "rb") as f:
     print(f"mini: {len(f'exec({repr(mini)})')}")
     print(textwrap.indent(mini, "  "))
 
-SUBST_CHAR = "~"
+SUBST_CHAR = "\\n"
 assert not (SUBST_CHAR.encode("ascii") in code)
-code = mini.replace("\n", SUBST_CHAR)
-code = f'exec("""{code}""".replace("{SUBST_CHAR}","\\n"))'
+code = mini.replace("\n", "\\n").replace('"', '\\"')
+code = f'exec("{code}")'  # .replace("{SUBST_CHAR}","\\n"))'
 print(code)
 
 # code = zlib.compress(code, 9)
