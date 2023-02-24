@@ -1,6 +1,5 @@
-#!/usr/bin/env python3.9
+#!/usr/bin/env python3.10
 deps = ("python-minifier==2.7.0", "cowsay==5.0")
-# deps = ("python-minifier==2.7.0",)
 import runfromvenv
 
 import python_minifier

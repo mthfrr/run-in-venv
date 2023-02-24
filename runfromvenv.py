@@ -33,5 +33,4 @@ deps = frame.f_locals["deps"]
     if "P" in environ
 ]
 
-installed_pkg = getoutput("pip freeze").split()
-[getoutput("pip install " + dep) for dep in deps if dep not in installed_pkg]
+[getoutput("pip install " + dep) for dep in deps if "P" in environ]
